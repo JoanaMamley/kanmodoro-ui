@@ -1,0 +1,242 @@
+:host {
+  display: flex;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+// ---- Page wrapper ----
+
+.register-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  min-height: 100dvh;
+  background: radial-gradient(ellipse at 50% 25%, #e8e3ff 0%, var(--color-lightest) 65%);
+  transition: background 0.3s ease;
+
+  :host-context(.dark-mode) & {
+    background: radial-gradient(ellipse at 50% 25%, #1c1a3a 0%, var(--color-bg-very-dark) 65%);
+  }
+}
+
+// ---- Card ----
+
+.register-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 40px 36px;
+  box-shadow:
+    0 1px 3px rgba(0, 1, 18, 0.06),
+    0 8px 24px rgba(0, 1, 18, 0.08);
+
+  :host-context(.dark-mode) & {
+    background: var(--color-bg-card);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 520px) {
+    padding: 28px 20px;
+    border-radius: 12px;
+  }
+}
+
+// ---- Header ----
+
+.card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.brand-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--color-bg-dark);
+
+  :host-context(.dark-mode) & {
+    color: var(--color-lightest);
+  }
+}
+
+.card-subtitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray-medium);
+  margin: 0;
+}
+
+// ---- Field layout ----
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+// ---- Label ----
+
+.field-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--color-bg-dark);
+  margin-bottom: 6px;
+
+  :host-context(.dark-mode) & {
+    color: var(--color-lightest);
+  }
+}
+
+// ---- Input ----
+
+.field-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(130, 143, 163, 0.3);
+  background: var(--color-lightest);
+  color: var(--color-bg-dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  :host-context(.dark-mode) & {
+    background: var(--color-bg-dark);
+    color: var(--color-lightest);
+    border-color: rgba(130, 143, 163, 0.2);
+  }
+
+  &::placeholder {
+    color: var(--color-gray-medium);
+    opacity: 0.7;
+  }
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 95, 199, 0.15);
+  }
+
+  &--error {
+    border-color: var(--color-error) !important;
+    box-shadow: 0 0 0 3px rgba(234, 85, 85, 0.12) !important;
+  }
+}
+
+// ---- Password wrapper ----
+
+.field-password-wrap {
+  position: relative;
+
+  .field-input {
+    padding-right: 42px;
+  }
+}
+
+.toggle-visibility {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  color: var(--color-gray-medium);
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+// ---- Error message ----
+
+.field-error {
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-error);
+  letter-spacing: 0.2px;
+}
+
+// ---- Submit ----
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 100px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+
+  &:hover {
+    background: var(--color-primary-hover);
+    color: var(--color-bg-dark);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// ---- Login link ----
+
+.login-prompt {
+  text-align: center;
+  margin: 18px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray-medium);
+}
+
+.login-link {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+}
