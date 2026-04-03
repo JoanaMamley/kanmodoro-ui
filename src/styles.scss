@@ -1,0 +1,231 @@
+@use '@angular/material' as mat;
+
+// -------------------------------------------------------
+// Kanmodoro Design Tokens
+// -------------------------------------------------------
+:root {
+  // Brand
+  --color-primary: #635fc7;
+  --color-primary-hover: #a8a4ff;
+
+  // Dark Backgrounds
+  --color-bg-very-dark: #000112;
+  --color-bg-dark: #20212c;
+  --color-bg-card: #2b2c37;
+
+  // Text / UI Accents
+  --color-gray-medium: #828fa3;
+  --color-gray-dark: #3e3f4e;
+
+  // Neutral / Light
+  --color-light-blue-gray: #e4ebfa;
+  --color-lightest: #f4f7fd;
+  --color-white: #ffffff;
+
+  // Destructive / Error
+  --color-error: #ea5555;
+  --color-error-hover: #ff9898;
+}
+
+// -------------------------------------------------------
+// Angular Material M3 Theme
+// -------------------------------------------------------
+html {
+  height: 100%;
+
+  @include mat.theme((
+    color: (
+      primary: mat.$violet-palette,
+      theme-type: light,
+    ),
+    typography: 'Plus Jakarta Sans',
+    density: 0,
+  ));
+
+  // Override M3 system variables with exact kanmodoro brand values
+  --mat-sys-primary: #635fc7;
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: #a8a4ff;
+  --mat-sys-on-primary-container: #000112;
+  --mat-sys-secondary: #828fa3;
+  --mat-sys-on-secondary: #ffffff;
+  --mat-sys-secondary-container: #e4ebfa;
+  --mat-sys-on-secondary-container: #20212c;
+  --mat-sys-surface: #f4f7fd;
+  --mat-sys-on-surface: #20212c;
+  --mat-sys-surface-variant: #e4ebfa;
+  --mat-sys-on-surface-variant: #3e3f4e;
+  --mat-sys-outline: rgba(130, 143, 163, 0.25);
+  --mat-sys-outline-variant: rgba(130, 143, 163, 0.25);
+  --mat-sys-background: #f4f7fd;
+  --mat-sys-on-background: #20212c;
+  --mat-sys-error: #ea5555;
+  --mat-sys-on-error: #ffffff;
+  --mat-sys-error-container: #ff9898;
+  --mat-sys-on-error-container: #000112;
+}
+
+body {
+  color-scheme: light;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin: 0;
+  height: 100%;
+}
+
+// -------------------------------------------------------
+// Typography
+// -------------------------------------------------------
+h1,
+.heading-xl {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+h2,
+.heading-l {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+h3,
+.heading-m {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+h4,
+.heading-s {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 2.4px;
+}
+
+.body-l {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 23px;
+}
+
+.body-m {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+// -------------------------------------------------------
+// Angular Material — Button Overrides
+// -------------------------------------------------------
+
+// Primary (L) button — large capsule
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-raised-button.mat-primary {
+  border-radius: 24px !important;
+  background-color: var(--color-primary) !important;
+  color: var(--color-white) !important;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-primary-hover) !important;
+  }
+}
+
+// Primary (S) button — small capsule
+.mat-mdc-unelevated-button.mat-primary.btn-sm,
+.mat-mdc-raised-button.mat-primary.btn-sm {
+  border-radius: 20px !important;
+  padding: 6px 18px !important;
+  font-size: 13px !important;
+}
+
+// Secondary button
+.mat-mdc-outlined-button {
+  border-radius: 24px !important;
+  border-color: transparent !important;
+  background-color: var(--color-light-blue-gray) !important;
+  color: var(--color-primary) !important;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-white) !important;
+  }
+}
+
+// Destructive / Warn button
+.mat-mdc-unelevated-button.mat-warn,
+.mat-mdc-raised-button.mat-warn {
+  border-radius: 24px !important;
+  background-color: var(--color-error) !important;
+  color: var(--color-white) !important;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-error-hover) !important;
+  }
+}
+
+// -------------------------------------------------------
+// Angular Material — Form Field Overrides
+// -------------------------------------------------------
+
+// Idle border — low-opacity gray
+.mat-mdc-form-field .mdc-notched-outline__leading,
+.mat-mdc-form-field .mdc-notched-outline__notch,
+.mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: rgba(130, 143, 163, 0.25) !important;
+}
+
+// Active / focused border — purple
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: var(--color-primary) !important;
+}
+
+// Error border
+.mat-mdc-form-field.mat-form-field-invalid .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-form-field-invalid .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-form-field-invalid .mdc-notched-outline__trailing {
+  border-color: var(--color-error) !important;
+}
+
+// Error helper text
+.mat-mdc-form-field-error {
+  color: var(--color-error) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+}
+
+// -------------------------------------------------------
+// Angular Material — Checkbox (Subtask) Overrides
+// -------------------------------------------------------
+.mat-mdc-checkbox {
+  // Square with rounded corners
+  .mdc-checkbox__background {
+    border-radius: 4px !important;
+  }
+}
+
+// Checked state — purple fill
+.mat-mdc-checkbox.mat-primary {
+  --mdc-checkbox-selected-checkmark-color: #ffffff;
+  --mdc-checkbox-selected-focus-icon-color: #635fc7;
+  --mdc-checkbox-selected-hover-icon-color: #635fc7;
+  --mdc-checkbox-selected-icon-color: #635fc7;
+  --mdc-checkbox-selected-pressed-icon-color: #635fc7;
+}
+
+// Strikethrough + dimmed label for completed subtasks
+.mat-mdc-checkbox.kanmodoro-task-done .mdc-label {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
