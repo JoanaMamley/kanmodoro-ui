@@ -1,1 +1,75 @@
-<p>login-page works!</p>
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <!-- Header -->
+    <div class="card-header">
+      <img src="images/kanmodoro_logo.png" alt="Kanmodoro" class="brand-logo" />
+      <h1 class="card-title">Welcome back</h1>
+      <p class="card-subtitle">Sign in to your Kanmodoro account.</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Email -->
+      <div class="field-group">
+        <label class="field-label" for="email">Email</label>
+        <input
+          id="email"
+          class="field-input"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          placeholder="jane@example.com"
+          [class.field-input--error]="f['email'].invalid && f['email'].touched"
+        />
+        @if (f['email'].touched && f['email'].hasError('required')) {
+          <span class="field-error">Email is required.</span>
+        } @else if (f['email'].touched && f['email'].hasError('email')) {
+          <span class="field-error">Enter a valid email address.</span>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="field-group">
+        <div class="password-label-row">
+          <label class="field-label" for="password">Password</label>
+          <a routerLink="/forgot-password" class="forgot-link">Forgot password?</a>
+        </div>
+        <div class="field-password-wrap">
+          <input
+            id="password"
+            class="field-input"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            autocomplete="current-password"
+            placeholder="Your password"
+            [class.field-input--error]="f['password'].invalid && f['password'].touched"
+          />
+          <button
+            type="button"
+            class="toggle-visibility"
+            (click)="showPassword = !showPassword"
+            [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+          >
+            @if (showPassword) {
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            } @else {
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            }
+          </button>
+        </div>
+        @if (f['password'].touched && f['password'].hasError('required')) {
+          <span class="field-error">Password is required.</span>
+        }
+      </div>
+
+      <button type="submit" class="submit-btn">Sign in</button>
+
+    </form>
+
+    <p class="register-prompt">
+      New to Kanmodoro?&nbsp;<a routerLink="/register" class="register-link">Create an account</a>
+    </p>
+
+  </div>
+</div>
