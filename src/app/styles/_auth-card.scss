@@ -20,10 +20,10 @@
   min-height: 100dvh;
   background: radial-gradient(ellipse at 50% 25%, #e8e3ff 0%, var(--color-lightest) 65%);
   transition: background 0.3s ease;
+}
 
-  :host-context(.dark-mode) & {
-    background: radial-gradient(ellipse at 50% 25%, #1c1a3a 0%, var(--color-bg-very-dark) 65%);
-  }
+:host-context(.dark-mode) .auth-wrapper {
+  background: radial-gradient(ellipse at 50% 25%, #1c1a3a 0%, var(--color-bg-very-dark) 65%);
 }
 
 // ---- Card ----
@@ -38,17 +38,17 @@
     0 1px 3px rgba(0, 1, 18, 0.06),
     0 8px 24px rgba(0, 1, 18, 0.08);
 
-  :host-context(.dark-mode) & {
-    background: var(--color-bg-card);
-    box-shadow:
-      0 1px 3px rgba(0, 0, 0, 0.3),
-      0 8px 32px rgba(0, 0, 0, 0.5);
-  }
-
   @media (max-width: 520px) {
     padding: 28px 20px;
     border-radius: 12px;
   }
+}
+
+:host-context(.dark-mode) .auth-card {
+  background: var(--color-bg-card);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 // ---- Header ----
@@ -70,10 +70,10 @@
   font-weight: 700;
   margin: 0 0 6px;
   color: var(--color-bg-dark);
+}
 
-  :host-context(.dark-mode) & {
-    color: var(--color-lightest);
-  }
+:host-context(.dark-mode) .card-title {
+  color: var(--color-lightest);
 }
 
 .card-subtitle {
@@ -97,21 +97,23 @@
   letter-spacing: 0.4px;
   margin-bottom: 6px;
   color: var(--color-bg-dark);
+}
 
-  :host-context(.dark-mode) & {
-    color: var(--color-lightest);
-  }
+:host-context(.dark-mode) .field-label {
+  color: var(--color-lightest);
 }
 
 // ---- Input ----
 
 .field-input {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   box-sizing: border-box;
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1.5px solid rgba(130, 143, 163, 0.3);
-  background: var(--color-lightest);
+  border: 1.5px solid var(--color-light-blue-gray);
+  background-color: var(--color-lightest);
   color: var(--color-bg-dark);
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 14px;
@@ -121,15 +123,18 @@
     border-color 0.15s ease,
     box-shadow 0.15s ease;
 
-  :host-context(.dark-mode) & {
-    background: var(--color-bg-dark);
-    color: var(--color-lightest);
-    border-color: rgba(130, 143, 163, 0.2);
-  }
-
   &::placeholder {
     color: var(--color-gray-medium);
-    opacity: 0.7;
+    opacity: 1;
+  }
+
+  // Override browser autofill highlight
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-lightest) inset !important;
+    -webkit-text-fill-color: var(--color-bg-dark) !important;
+    caret-color: var(--color-bg-dark);
   }
 
   &:focus {
@@ -140,6 +145,25 @@
   &--error {
     border-color: var(--color-error) !important;
     box-shadow: 0 0 0 3px rgba(234, 85, 85, 0.12) !important;
+  }
+}
+
+:host-context(.dark-mode) .field-input {
+  background-color: var(--color-bg-dark);
+  color: var(--color-lightest);
+  border-color: var(--color-gray-dark);
+
+  &::placeholder {
+    color: var(--color-gray-medium);
+    opacity: 1;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-bg-dark) inset !important;
+    -webkit-text-fill-color: var(--color-lightest) !important;
+    caret-color: var(--color-lightest);
   }
 }
 
