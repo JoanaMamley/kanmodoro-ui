@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('kanmodoro-ui');
+
+  // Injecting here ensures the service — and its OS preference listener —
+  // is initialised as soon as the app shell mounts, regardless of route.
+  protected readonly theme = inject(ThemeService);
 }
